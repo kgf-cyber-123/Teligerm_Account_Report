@@ -1,5 +1,4 @@
 requests
-requests[socks]
 configparser
 random-user-agent
 emailtools
