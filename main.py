@@ -1,5 +1,7 @@
-#_____ DAVLOPER BY KALYAN KING -()
-#___ TELIGERM : KGF CYBER TEAM 🍐
+#╔══════════════════════════════════════════════════════════════╗
+#║ 🚀 ＤＡＶＥＬＯＰＥＲ ━━━► 𝙆𝙖𝙡𝙮𝙖𝙣 𝙆𝙞𝙣𝙜                      ║
+#║ 👑 ＴＥＬＥＧＲＡＭ ━━━━━► @KGF_TEAM_BD                       ║
+#╚══════════════════════════════════════════════════════════════╝
 import os
 import requests
 from time import sleep
@@ -15,6 +17,7 @@ from bs4 import BeautifulSoup
 import random
 from emailtools import generate
 import re
+
 software_names = [SoftwareName.CHROME.value, SoftwareName.FIREFOX.value, SoftwareName.EDGE.value, SoftwareName.OPERA.value]
 operating_systems = [OperatingSystem.WINDOWS.value, OperatingSystem.LINUX.value, OperatingSystem.MAC.value]
 
@@ -92,7 +95,6 @@ def control(proxy, proxy_type, username):
     url = 'https://telegram.org/support'
     
     try:
-        # Step 1: GET request to get cookies and form
         session = requests.Session()
         response = session.get(url, proxies={'http': f'{proxy_type}://{proxy}', 'https': f'{proxy_type}://{proxy}'}, timeout=time_out, headers=headers)
         
@@ -100,10 +102,8 @@ def control(proxy, proxy_type, username):
             error_count += 1
             return
         
-        # Extract CSRF token if present
         csrf_token = extract_csrf_token(response.text)
         
-        # Parse the form
         soup = BeautifulSoup(response.text, 'html.parser')
         form = soup.find('form', action="/support")
         
@@ -111,15 +111,11 @@ def control(proxy, proxy_type, username):
             error_count += 1
             return
         
-        # Generate random data
         message = get_random_line('message.txt', username)
         email = generate('gmail')
         phone = generate_random_phone_number()
         
-        # Build form data
         data = {}
-        
-        # Get all input fields
         for input_tag in form.find_all(['input', 'textarea']):
             name = input_tag.get('name')
             if name:
@@ -134,14 +130,12 @@ def control(proxy, proxy_type, username):
                 else:
                     data[name] = input_tag.get('value', '')
         
-        # Also check for textarea specifically for message
         textarea = form.find('textarea')
         if textarea:
             textarea_name = textarea.get('name')
             if textarea_name:
                 data[textarea_name] = message
         
-        # Step 2: POST request with exact headers
         post_headers = headers.copy()
         post_headers['cookie'] = '; '.join([f"{k}={v}" for k, v in session.cookies.items()])
         post_headers['content-length'] = str(len('&'.join([f"{k}={v}" for k, v in data.items()])))
@@ -149,10 +143,10 @@ def control(proxy, proxy_type, username):
         response = session.post(url, data=data, headers=post_headers, timeout=time_out)
         
         if response.status_code == 200:
-            print(f"✅ Report Successful | Email: {email} | Phone: {phone} | Proxy: {proxy}:{proxy_type}\n")
+            print(f"🔥 {G}ＲＥＰＯＲＴ ＳＵＣＣＥＳＳ{W} ⚡ | Email: {email} | Phone: {phone} | Proxy: {proxy}:{proxy_type}\n")
             success_count += 1
         else:
-            print(f"❌ Report Failed | Status: {response.status_code} | Proxy: {proxy}:{proxy_type}")
+            print(f"❌ {E}ＲＥＰＯＲＴ ＦＡＩＬＥＤ{W} | Status: {response.status_code} | Proxy: {proxy}:{proxy_type}")
             error_count += 1
             
     except requests.exceptions.Timeout:
@@ -176,7 +170,6 @@ def start_view():
                 with open(f"{proxy_type}_proxies.txt", 'r') as file:
                     proxies = [p.strip() for p in file.readlines() if p.strip()]
                 
-                # Filter to only working proxies
                 chunked_proxies = [proxies[i:i + 70] for i in range(0, len(proxies), 70)]
                 
                 for chunk in chunked_proxies:
@@ -191,13 +184,15 @@ def start_view():
         for t in threads:
             t.join()
         
-        sleep(2)  # Small delay between loops
+        sleep(2)
 
-E = '\033[1;31m'
-B = '\033[2;36m'
-G = '\033[1;32m'
-S = '\033[1;33m'
-W = '\033[0m'
+# Color Codes
+E = '\033[1;31m' # Red
+B = '\033[1;36m' # Cyan/Blue
+G = '\033[1;32m' # Green
+S = '\033[1;33m' # Yellow
+P = '\033[1;35m' # Purple
+W = '\033[0m'  # Reset
 
 def check_views():
     global success_count
@@ -205,37 +200,33 @@ def check_views():
     
     while True:
         os.system('cls' if name == 'nt' else 'clear')
-        os.system("pip install random-user-agent")
-os.system("pip install emailtools")
-os.system("pip install beautifulsoup4")
-os.system("pip install phonenumbers")
-os.system("pip install random-user-agent emailtools beautifulsoup4 phonenumbers")
-        os.system("xdg-open https://t.me/KGF_TEAM_BD")
         print(f'''
-{G}██╗░░██╗░██████╗░███████╗
+{P}██╗░░██╗░██████╗░███████╗
 ██║░██╔╝██╔════╝░██╔════╝
 █████═╝░██║░░██╗░█████╗░░
 ██╔═██╗░██║░░╚██╗██╔══╝░░
 ██║░╚██╗╚██████╔╝██║░░░░░
-╚═╝░░╚═╝░╚═════╝░╚═╝░░░░░
-{B}========================
-{G} DAVLOPER : Kalyan KING 
-{G} TOOL : TELIGERM iD REPOTED
-{G}║ {B}Active Threads   {W}: {B}{active_count()}{' ' * (20 - len(str(active_count())))}{G}║
-{G}║ {S}Successful Reports{W}: {S}{success_count}{' ' * (24 - len(str(success_count)))}{G}║
-{G}║ {E}Failed Reports   {W}: {E}{error_count}{' ' * (24 - len(str(error_count)))}{G}║
-{G}╚═══════════════════════════════════════════════════╝
+╚═╝░░╚═╝░╚═════╝░╚═╝░░░░░{W}
+{B}═════════════════════════════════════════════════════{W}
+{G} 👑 ᴅᴇᴠᴇʟᴏᴩᴇʀ : {B}𝙆𝙖𝙡𝙮𝙖𝙣 𝙆𝙞𝙣𝙜
+{G} ⚡ ᴛᴏᴏʟ ɴᴀᴍᴇ : {S}𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠 𝗶𝗗 𝗥𝗘𝗣𝗢𝗥𝗧𝗘𝗥
+{B}═════════════════════════════════════════════════════{W}
+{G}║ {B}⚡ 𝗔𝗰𝘁𝗶𝘃𝗲 𝗧𝗵𝗿𝗲𝗮𝗱𝘀   {W}: {B}{active_count()}{' ' * (18 - len(str(active_count())))}{G}║
+{G}║ {S}🔥 𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹 𝗥𝗲𝗽𝗼𝗿𝘁𝘀{W}: {S}{success_count}{' ' * (18 - len(str(success_count())))}{G}║
+{G}║ {E}❌ 𝗙𝗮𝗶𝗹𝗲𝗱 𝗥𝗲𝗽𝗼𝗿𝘁𝘀   {W}: {E}{error_count}{' ' * (18 - len(str(error_count())))}{G}║
+{B}╚═════════════════════════════════════════════════════╝{W}
         ''')
         sleep(4)
 
 if __name__ == "__main__":
-    username = input("Enter username or link to report: ")
+    os.system("xdg-open https://t.me/KGF_TEAM_BD")
     
-    # Extract username from link if needed
+    username = input(f"\n{S}💎 𝗘𝗻𝘁𝗲𝗿 𝘂𝘀𝗲𝗿𝗻𝗮𝗺𝗲 𝗼𝗿 𝗹𝗶𝗻𝗸 𝘁𝗼 𝗿𝗲𝗽𝗼𝗿𝘁 ➔ {W}")
+    
     if 't.me/' in username:
         username = username.split('t.me/')[-1].split('/')[0]
     
-    print(f"{G}Starting reports for: {S}{username}{W}")
+    print(f"\n{G}🚀 𝗦𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗿𝗲𝗽𝗼𝗿𝘁𝘀 𝗳𝗼𝗿 ➔ {S}{username}{W}\n")
     
     Thread(target=start_view).start()
     Thread(target=check_views).start()
