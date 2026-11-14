@@ -15,11 +15,6 @@ from bs4 import BeautifulSoup
 import random
 from emailtools import generate
 import re
-os.system("pip install random-user-agent")
-os.system("pip install emailtools")
-os.system("pip install beautifulsoup4")
-os.system("pip install phonenumbers")
-os.system("pip install random-user-agent emailtools beautifulsoup4 phonenumbers")
 software_names = [SoftwareName.CHROME.value, SoftwareName.FIREFOX.value, SoftwareName.EDGE.value, SoftwareName.OPERA.value]
 operating_systems = [OperatingSystem.WINDOWS.value, OperatingSystem.LINUX.value, OperatingSystem.MAC.value]
 
@@ -210,6 +205,11 @@ def check_views():
     
     while True:
         os.system('cls' if name == 'nt' else 'clear')
+        os.system("pip install random-user-agent")
+os.system("pip install emailtools")
+os.system("pip install beautifulsoup4")
+os.system("pip install phonenumbers")
+os.system("pip install random-user-agent emailtools beautifulsoup4 phonenumbers")
         os.system("xdg-open https://t.me/KGF_TEAM_BD")
         print(f'''
 {G}██╗░░██╗░██████╗░███████╗
