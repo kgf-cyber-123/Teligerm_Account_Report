@@ -47,7 +47,7 @@ Follow these simple commands in your terminal to clone and run the tool successf
 ```bash
 pkg update && pkg upgrade -y
 pkg install git python -y
-git clone [https://github.com/kgf-cyber-123/Teligerm_Account_Report.git](https://github.com/kgf-cyber-123/Teligerm_Account_Report.git)
+git clone https://github.com/kgf-cyber-123/Teligerm_Account_Report.git
 cd Teligerm_Account_Report
 pip install -r requirements.txt
 python main.py
