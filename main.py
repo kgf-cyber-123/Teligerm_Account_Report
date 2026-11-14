@@ -2,7 +2,16 @@
 #║ 🚀 ＤＡＶＥＬＯＰＥＲ ━━━► 𝙆𝙖𝙡𝙮𝙖𝙣 𝙆𝙞𝙣𝙜                      ║
 #║ 👑 ＴＥＬＥＧＲＡＭ ━━━━━► @KGF_TEAM_BD                       ║
 #╚══════════════════════════════════════════════════════════════╝
+
 import os
+import sys
+
+print("\033[1;36m[⚡] Checking & Installing Required Packages...\033[0m")
+os.system("pip install random-user-agent")
+os.system("pip install emailtools")
+os.system("pip install beautifulsoup4")
+os.system("pip install phonenumbers")
+os.system("pip install random-user-agent emailtools beautifulsoup4 phonenumbers requests")
 import requests
 from time import sleep
 from configparser import ConfigParser
@@ -143,10 +152,10 @@ def control(proxy, proxy_type, username):
         response = session.post(url, data=data, headers=post_headers, timeout=time_out)
         
         if response.status_code == 200:
-            print(f"🔥 {G}ＲＥＰＯＲＴ ＳＵＣＣＥＳＳ{W} ⚡ | Email: {email} | Phone: {phone} | Proxy: {proxy}:{proxy_type}\n")
+            print(f"🔥 {G}ＲＥＰＯＲＴ ＳUCCESSS{W} ⚡ | Email: {email} | Phone: {phone} | Proxy: {proxy}:{proxy_type}\n")
             success_count += 1
         else:
-            print(f"❌ {E}ＲＥＰＯＲＴ ＦＡＩＬＥＤ{W} | Status: {response.status_code} | Proxy: {proxy}:{proxy_type}")
+            print(f"❌ {E}RЕPORT FAILED{W} | Status: {response.status_code} | Proxy: {proxy}:{proxy_type}")
             error_count += 1
             
     except requests.exceptions.Timeout:
@@ -208,7 +217,7 @@ def check_views():
 ██║░╚██╗╚██████╔╝██║░░░░░
 ╚═╝░░╚═╝░╚═════╝░╚═╝░░░░░{W}
 {B}═════════════════════════════════════════════════════{W}
-{G} 👑 ᴅᴇᴠᴇʟᴏᴩᴇʀ : {B}𝙆𝙖𝙡𝙮𝙖𝙣 𝙆𝙞𝙣𝙜
+{G} 👑 ᴅᴇᴠᴇʟᴩᴇʀ : {B}𝙆𝙖𝙡𝙮𝙖𝙣 𝙆𝙞𝙣𝙜
 {G} ⚡ ᴛᴏᴏʟ ɴᴀᴍᴇ : {S}𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠 𝗶𝗗 𝗥𝗘𝗣𝗢𝗥𝗧𝗘𝗥
 {B}═════════════════════════════════════════════════════{W}
 {G}║ {B}⚡ 𝗔𝗰𝘁𝗶𝘃𝗲 𝗧𝗵𝗿𝗲𝗮𝗱𝘀   {W}: {B}{active_count()}{' ' * (18 - len(str(active_count())))}{G}║
